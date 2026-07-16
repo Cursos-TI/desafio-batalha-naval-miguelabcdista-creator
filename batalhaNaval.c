@@ -8,6 +8,8 @@ int main() {
     // Vetores que representam os navios
     int navioHorizontal[3] = {3, 3, 3};
     int navioVertical[3] = {3, 3, 3};
+    int navioDiagonal1[3] = {3, 3, 3};
+    int navioDiagonal2[3] = {3, 3, 3};
 
     int i, j;
 
@@ -26,14 +28,48 @@ int main() {
     int linhaV = 5;
     int colunaV = 7;
 
+    // Coordenadas do navio diagonal principal (\)
+    int linhaD1 = 0;
+    int colunaD1 = 6;
+
+    // Coordenadas do navio diagonal secundária (/)
+    int linhaD2 = 7;
+    int colunaD2 = 2;
+
     // Posiciona o navio horizontal
-    for (i = 0; i < 3; i++) {
-        tabuleiro[linhaH][colunaH + i] = navioHorizontal[i];
+    if (colunaH + 2 < 10) {
+        for (i = 0; i < 3; i++) {
+            if (tabuleiro[linhaH][colunaH + i] == 0) {
+                tabuleiro[linhaH][colunaH + i] = navioHorizontal[i];
+            }
+        }
     }
 
     // Posiciona o navio vertical
-    for (i = 0; i < 3; i++) {
-        tabuleiro[linhaV + i][colunaV] = navioVertical[i];
+    if (linhaV + 2 < 10) {
+        for (i = 0; i < 3; i++) {
+            if (tabuleiro[linhaV + i][colunaV] == 0) {
+                tabuleiro[linhaV + i][colunaV] = navioVertical[i];
+            }
+        }
+    }
+
+    // Posiciona o navio diagonal principal (\)
+    if (linhaD1 + 2 < 10 && colunaD1 + 2 < 10) {
+        for (i = 0; i < 3; i++) {
+            if (tabuleiro[linhaD1 + i][colunaD1 + i] == 0) {
+                tabuleiro[linhaD1 + i][colunaD1 + i] = navioDiagonal1[i];
+            }
+        }
+    }
+
+    // Posiciona o navio diagonal secundária (/)
+    if (linhaD2 - 2 >= 0 && colunaD2 + 2 < 10) {
+        for (i = 0; i < 3; i++) {
+            if (tabuleiro[linhaD2 - i][colunaD2 + i] == 0) {
+                tabuleiro[linhaD2 - i][colunaD2 + i] = navioDiagonal2[i];
+            }
+        }
     }
 
     // Exibe o tabuleiro
